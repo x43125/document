@@ -26,3 +26,9 @@
 2. idea： cannot resolve method
 
 检查import的库是否正确，多数为此错误
+
+
+
+## shell
+
+使用`.`来执行脚本的时候，如果脚本出错会将会话直接关闭，使用`bash`或`sh`来执行则不会
