@@ -4,11 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "00ebb8ecb966a45f",
+        "id": "8a054ee956c2a6a0",
         "type": "leaf",
         "state": {
-          "type": "graph",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "frontend/vue-elementui搭建与简单使用.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -36,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "vue",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -49,7 +53,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 370
+    "width": 276
   },
   "right": {
     "id": "64d0f7e5a9b27d4f",
@@ -65,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "frontend/vue-elementui搭建与简单使用.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -82,8 +87,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "00ebb8ecb966a45f",
+  "active": "8a054ee956c2a6a0",
   "lastOpenFiles": [
+    "frontend/vue-elementui搭建与简单使用.md",
+    "个人博客搭建/前端/vue.md",
+    "论文/bigtable-osdi06.pdf",
     "README.md",
     "个人博客搭建/阿里云服务器centos7安装部署mysql8.md",
     "excel.md",

@@ -143,3 +143,15 @@ upload:
 
 
 
+## 问题
+
+1 无权限初始化项目
+
+![img](https://pic2.zhimg.com/80/v2-58fe812e615bf9191e0c4bafab56c24d_720w.png)
+
+权限问题：赋权即可，或使用root权限打开shell
+
+`set-ExecutionPolicy RemoteSigned `
+
+接着输入`RemoteSigned`即可
+
