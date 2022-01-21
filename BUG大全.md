@@ -32,3 +32,11 @@
 ## shell
 
 使用`.`来执行脚本的时候，如果脚本出错会将会话直接关闭，使用`bash`或`sh`来执行则不会
+
+## mybatis-plus
+分页的时候，如果是join需要在最外层包一层，否则只会用主表数来返回total
+```mysql
+select * from (
+    join语句
+) as temp
+```

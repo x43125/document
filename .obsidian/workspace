@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "frontend/vue-elementui搭建与简单使用.md",
+            "file": "shell/语法.md",
             "mode": "source",
             "source": false
           }
@@ -69,14 +69,14 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "frontend/vue-elementui搭建与简单使用.md",
-                "collapseAll": false,
+                "file": "shell/语法.md",
+                "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": true,
-                "unlinkedCollapsed": true
+                "unlinkedCollapsed": false
               }
             }
           }
@@ -84,17 +84,20 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
+    "width": 218,
     "collapsed": true
   },
   "active": "8a054ee956c2a6a0",
   "lastOpenFiles": [
+    "shell/语法.md",
+    "shell/示例.md",
+    "BUG大全.md",
+    "database/sql/pg数据库/pgpool/PG_POOL.md",
     "frontend/vue-elementui搭建与简单使用.md",
     "个人博客搭建/前端/vue.md",
     "论文/bigtable-osdi06.pdf",
     "README.md",
     "个人博客搭建/阿里云服务器centos7安装部署mysql8.md",
-    "excel.md",
-    "BUG大全.md"
+    "excel.md"
   ]
 }
