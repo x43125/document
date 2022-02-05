@@ -26,7 +26,7 @@
 
 - 字符串：string
 
-  - 字符串是最基础的数据结构，所有的键都是字符串，其他数据结构也是以字符串为基础
+  > 字符串是最基础的数据结构，所有的键都是字符串，其他数据结构也是以字符串为基础
 
   - 字符串、数字、二进制，不可超过512MB
 
@@ -51,17 +51,82 @@
 
 - redis典型使用场景：缓存，计数，共享session，限速
 
-- hash：键值对：key:filed:value
+- 字典：hash
 
-  - 命令
-    - hset, hget, hdel, hlen, hmget, hmset, hexists, hkeys, hvals, hgetall, hscan
+  > 键值对：key:filed:value
+
+- - 命令
+  - hset, hget, hdel, hlen, hmget, hmset, hexists, hkeys, hvals, hgetall, hscan
+    
     -  hincrby, hincrbyfloat, hstrlen, 
+    
   - 内部编码
     - ziplist：当元素个数<hash-max-ziplist-entries 且 所有值都<hash-max-ziplist-value值时，更加节省内存
     - hashtable：其他情况。读写速度较快
-  - 缺点：稀疏
+    
+  - hash类型和关系型数据库的不同：
+  
+    - hash是稀疏的，关系型数据库是完全结构化的
+    - 关系数据库可以做复杂的关联查询
+  
+  - 三种cache实现方式：
+  
+    - 字符串直接实现：user1:tom:name tom; user1:tom:birth 1998; user1:tom:sex 1
+    - 序列化实现：user1:tom serialize(tom)
+    - hash：user1:tom name tom birth 1998 sex 1
+  
+    > 各有优缺点，自行判断
+  
+- 列表：list
 
+  > 存储多个有序字符串
 
+  - 一个列表最多可存储2^32 -1个元素
+  - 特点
+    - 元素有序
+    - 元素可重复
+  - 命令：lpush, rpush, lrange, linsert, lindex, llen, lpop, rpop, lrem, ltrim, lset
+  - blpop, brpop (可以做消息队列)
+  - 内部编码
+    - ziplist：当元素个数小于 `list-max-ziplist-entries`，且每个元素小于 `list-max-ziplist-value`时是ziplist；节约内存
+    - linkedlist：否则是linkedlist；节约时间
+    - quicklist：新加类型，结合了ziplist和linkedlist
+  - 使用场景
+    - 消息队列
+    - 文章列表
+  - 口诀：
+    - lpush + lpop = Stack
+    - lpush + rpop = Queue
+    - lpush + ltrim = Capped Collection (有限集合)
+    - lpush + brpop = Message Queue (消息队列)
+  
+- 集合：set
+
+  > 无序，无重复
+
+  - 一个集合最多可存储2^32 -1个元素
+  - Redis支持集合内**增删改查**，还支持集合间取**交，并，差集**
+  - 命令：
+    - sadd, srem, scard, sismember, srandmember, spop, smembers, sscan
+    - sinter, sunion, sdiff; sinterstore, sunionstore, sdiffstore
+  - 内部编码
+    -  intset：当元素都是整数 且 元素个数小于 `set-max-intset-entries` (默认512个)
+    - hashtable：其他情况为此编码，速度快
+  - 使用场景
+    - 标签 （用户和标签的关系维护应该在一个事务里进行）
+  - 主要场景
+    - sadd = 标签
+    - spop / srandmember = Random item (随机数，抽奖)
+    - sadd + sinter = Social Graph (社交)
+
+- 有序集合：zset
+
+  > 每一个元素都有一个分数属性作为排序依据，元素不可重复，但分数可以重复
+
+  - 命令：zadd, zadd nx, zadd xx, zadd ch, zadd incr
+    - zcard, zscore, zrank, zrevrank, zrem, zincrby, zrange, zrevrange
+    - zrangebyscore, zrevrangebyscore, zcount, zremrangebyrank, zremrangebyscore
+    - zinter, zunion, zinterstore, zunionstore
 
 
 
