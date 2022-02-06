@@ -9,8 +9,6 @@
 
 **内部编码**
 
-![image-20220203230140624](C:\Users\x43125\AppData\Roaming\Typora\typora-user-images\image-20220203230140624.png)
-
 - 内部编码的好处：抽象内聚，更换底层编码时不会影响外部使用；适用多种情景，选择最合适的内存时间搭配
 
 - Redis使用了单线程架构和I/O多路复用技术来实现高性能
@@ -127,7 +125,40 @@
     - zcard, zscore, zrank, zrevrank, zrem, zincrby, zrange, zrevrange
     - zrangebyscore, zrevrangebyscore, zcount, zremrangebyrank, zremrangebyscore
     - zinter, zunion, zinterstore, zunionstore
+  - 内部编码
+    - ziplist：当元素个数小于`zset-max-ziplist-entries` (默认是128个)，且每个元素的值小于 `zset-max-ziplist-value` （默认是64字节）
+    - skiplist：其他情况；读写速度快，占用内存大
+  - 使用场景
+    - 排行榜
+  
+- 建管理
 
+  - rename, renamenx, randomkey
+  - expire, expireat, pexpire, pexpireat, pttl, persist
+
+- 迁移键
+
+  - move：redis内部数据库间移动
+  - dump + restore：从源向目的数据库实例移动
+  - migrate：原子执行；将 dump, restore, del 三个操作组合使用；支持迁移多个键；只需要在源redis上执行即可
+
+- 遍历键
+
+  - keys: `glob`风格的匹配
+
+    - keys *
+    - keys hel*
+    - keys ?ello
+    - keys [jr]edis
+    - keys \[^j]edis
+    - keys [a-z]edis
+    - 大量键情况下有可能阻塞
+
+  - scan：渐进式遍历
+
+    > 使用hashtable数据结构
+
+    - scan cursor match type
 
 
 
