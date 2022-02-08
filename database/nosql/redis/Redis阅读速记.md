@@ -2,12 +2,18 @@
 
 > 目的是速记，不要拘谨
 
+## Redis总览
+
 - Redis命令很多，但有互通性，不可死记硬背
 - Redis和其数据结构不是万金油，不可胡乱使用
 - 通用命令：keys, dbsize, exists, del, expire, ttl, type
 - Redis对外数据结构：string, list, hash, set, zset，每个类型都有内部的编码格式，并且不止一个，可以使用 `object encoding` 来查看键的内部编码
 
+<<<<<<< HEAD
 - 内部编码的好处：抽象内聚，更换底层编码时不会影响外部使用；适用多种情景，选择最合适的内存与时间的搭配
+=======
+- 内部编码的好处：抽象内聚，更换底层编码时不会影响外部使用；适用多种情景，选择最合适的内存时间搭配
+>>>>>>> c61abfcfdecc9291dc5d1b6169f60cc4071c1b95
 
 - Redis使用了单线程架构和I/O多路复用技术来实现高性能
 
@@ -160,16 +166,64 @@
   
 - dbsize, select, flushdb/flushall
 
+## Redis数据结构
 
+- hash
+    - 入键过程
+        - 计算键的hash值：MurmurHash3
+        - 散列：
+        - rehash：链表法（头插法）
+        - 渐进式rehash：为防止表中数量过多，直接从tb0复制到tb1导致阻塞，采用渐进式rehash方式；旧表只减不增
 
+- skiplist：跳表
 
+    > 跳表：平均：O(logN)；最坏：O(N)
+    >
+    > 大部分情况下，效率媲美平衡树；实现比平衡树简单
+    >
+    > 有序集合的所有元素都存在一个跳表中
+    >
+    > 用处：有序集合键；集群节点中用作内部数据结构
 
+    - zskiplist
 
+    ```c
+    typedef struct zskiplist {
+        // header 跳表头节点
+        // tail 跳表尾节点
+        struct zskiplistNode *header, *tail;
+        // 跳表长度（表头结点的层数不算在内）
+        unsigned long length;
+        // 跳表层数最大的那层的层数（表头结点不算在内）
+        int level;
+    } zskiplist;
+    ```
 
+    - zskiplistNode
 
+    ```c
+    /* ZSETs use a specialized version of Skiplists */
+    typedef struct zskiplistNode {
+        // 键
+        sds ele;
+        // 分数
+        double score;
+        // 后退指针
+        struct zskiplistNode *backward;
+        struct zskiplistLevel {
+            // 前进指针
+            struct zskiplistNode *forward;
+            // 前进跨度
+            unsigned long span;
+        } level[];
+    } zskiplistNode;
+    ```
 
+    ![image-20220207170328230](resources/image-20220207170328230.png)
 
-
+    - 层
+        - level数组包含多个元素，每个元素都包含一个指向其他节点的指针
+        - 幂次定律：越大的数出现的概率越小；使用幂次定律在创建新层的时候随即指定一个层的高度
 
 
 
