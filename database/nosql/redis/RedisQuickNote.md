@@ -330,7 +330,35 @@
 
 
 
+## Redis 操作底层
 
+> v2.8
+
+redis.h/redisServer
+
+- redisServer中有一个 redisDb的数组，存储所有数据库
+
+- 每个redisDb结构代表一个数据库
+- redisClient 客户端结构: redisDb *db 记录当前客户端正在使用的数据库
+- redisDb 结构表示一个数据库：
+    - dict *dict 保存了数据库中的所有键值对 (key space):
+        - dictht ht[2]
+            - dictEntry **table
+                - void *key 
+                - union {void *val; uint64_t u64; int64_t s64;} v;
+- expire; pexpire; expireat; pexpireat.最终都会转换成 pexpireat命令来实现 
+    - dict *expire 保存了键的过期时间 
+        - dictht ht[2]
+            - dictEntry **table
+                - void *key: 指向键空间中的对应对象
+                - union ... v 指向一个long long类型的整数：保存以哦个毫秒精度的UNIX时间戳
+    - 步骤：
+        - 对一个键设置过期时间
+            - expireat pexpireat时 basetime=0
+            - expire expireat时 s -> ms
+            - 未取到key时返回0
+            - 如果已过期 且 服务器是主节点 且 没有在载入数据 时 不直接删除过期的键而是等待显示执行del
+            - 此外：设置键过期时间；发送键空间改变信号；提醒键空间 发生了expire事件； 数据库被修改次数++； 返回
 
 
 
