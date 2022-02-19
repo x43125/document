@@ -382,6 +382,9 @@ redis.h/redisServer
 
 > AOF、RDB和复制功能对过期键的处理
 
+### RDB
+- dirty: dirty计数器记录上一次成功执行`SAVE`或者`BGSAVE`后服务器（所有数据库）又进行了多少次修改。
+- lastsave: 记录上一次执行保存的时间
 
 
 
