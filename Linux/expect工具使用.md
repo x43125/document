@@ -40,3 +40,24 @@ expect {
 expect eof
 ```
 
+## 返回值
+使用 `wait` 命令
+```shell
+#!/usr/bin/expect
+
+spawn ssh root@192.168.11.128 'sh /root/test.sh'
+expect {
+    "(yes/no)?" {
+        send "yes\r"
+        expect "password:"
+        send "root\r"
+        }
+    "password:" {send "root\r"}
+    "* to host" {exit 1}
+    }
+expect eof
+############################
+catch wait result
+exit [lindex \$result 3]
+############################
+```
