@@ -10,16 +10,12 @@ docker pull mysql
 ### 启动MySQL
 
 ```sh
-docker run -p 3306:3306 --name mysql -v /opt/mysql/conf:/etc/mysql/conf.d -v /scy/mysql/logs:/logs -v /scy/mysql/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.4
-
-sudo docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
-
-docker run -p 6033:3306 --name mysql \
+docker run -p 3306:3306 --name mysql \
 -v /opt/mysql/conf:/etc/mysql \
 -v /opt/mysql/logs:/var/log/mysql \
 -v /opt/mysql/data:/var/lib/mysql \
 -v /opt/mysql/mysql-files:/var/lib/mysql-files/ \
--e MYSQL_ROOT_PASSWORD=123ABCdef* \
+-e MYSQL_ROOT_PASSWORD=456123 \
 -d mysql
 
 # 当做了外部目录映射之后也要映射/var/lib/mysql-files/ 
