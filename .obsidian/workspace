@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "bigdata/时序数据库/规则及实现.md",
+            "file": "docker/docker安装.md",
             "mode": "source",
             "source": false
           }
@@ -40,7 +40,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "vue",
+                "query": "docker",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -53,7 +53,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 276
+    "width": 340
   },
   "right": {
     "id": "64d0f7e5a9b27d4f",
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "bigdata/时序数据库/规则及实现.md",
+                "file": "docker/docker安装.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,15 +89,15 @@
   },
   "active": "8a054ee956c2a6a0",
   "lastOpenFiles": [
+    "docker/docker安装.md",
+    "Linux/虚拟机常用配置.md",
+    "面试/面试总结/面试总结.md",
+    "Linux/Linux美化.md",
+    "源码学习/spring源码学习/spring-source-code-quick-note.md",
+    "使用记录.md",
+    "Untitled.md",
     "bigdata/时序数据库/规则及实现.md",
     "bigdata/时序数据库/Example.md",
-    "bigdata/时序数据库/持续聚合.md",
-    "bigdata/时序数据库/时序数据库Timescale使用.md",
-    "bigdata/时序数据库/TimeScaleDB插件安装.md",
-    "源码学习/spring源码学习/spring-source-code-quick-note.md",
-    "Java/JVM/JVM-study.md",
-    "Linux/expect工具使用.md",
-    "Linux/shell/语法.md",
-    "database/nosql/redis/RedisQuickNote.md"
+    "bigdata/时序数据库/持续聚合.md"
   ]
 }
