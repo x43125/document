@@ -16,3 +16,4 @@
 ### 测试所谓即使渲染
 ## 测试obsidian
 
+add .gitignore and remove .obsidian
