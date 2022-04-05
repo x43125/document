@@ -18,7 +18,7 @@ java.lang.ClassCastException: org.codehaus.janino.CompilerFactory cannot be cast
 classloader.resolve-order: parent-first
 ```
 
-![image-20210426132813161](resources/image-20210426132813161.png)
+![image-20210426132813161](image-20210426132813161.png)
 
 
 
@@ -26,7 +26,7 @@ classloader.resolve-order: parent-first
 
 > 使用自定义的yaml文件启动flink sql-client后，表正确创建，无法查询，报错如下
 
-![image-20210426142324260](resources/image-20210426142324260.png)
+![image-20210426142324260](image-20210426142324260.png)
 
 #### 解决办法：
 
@@ -40,7 +40,7 @@ classloader.resolve-order: parent-first
 
 > 查询报错
 
-![image-20210426150403672](resources/image-20210426150403672.png)
+![image-20210426150403672](image-20210426150403672.png)
 
 #### 解决办法：
 
@@ -56,7 +56,7 @@ classloader.resolve-order: parent-first
 
 > 无法解析时间格式
 
-![image-20210426152001828](resources/image-20210426152001828.png)
+![image-20210426152001828](image-20210426152001828.png)
 
 #### 解决办法：
 

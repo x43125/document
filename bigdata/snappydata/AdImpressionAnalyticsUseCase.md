@@ -2,7 +2,7 @@
 
 ## Ad Impression Analytics use case
 
-![Architecture Kinda](resources/AdAnalytics_Architecture.png)
+![Architecture Kinda](AdAnalytics_Architecture.png)
 
 - **Find total uniques for a certain AD grouped on geography;**
 - **Impression trends for advertisers over time;**

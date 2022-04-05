@@ -96,4 +96,4 @@ CREATE TABLE CustomerStatusChangedEvent2(
 
 结果展示：
 
-![image-20210426165755517](resources/image-20210426165755517.png)
+![image-20210426165755517](image-20210426165755517.png)

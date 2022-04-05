@@ -1,12 +1,12 @@
 # Flink read data from Kafka sink to Ignite
 
-![streamers](resources/streamers.png)
+![streamers](streamers.png)
 
 ## 1. 示例
 
 ### 1.1 结构：
 
-![image-20210510162957787](resources/image-20210510162957787.png)
+![image-20210510162957787](image-20210510162957787.png)
 
 ### 1. 2 pom.xml
 
@@ -339,15 +339,15 @@ mvn clean package
 
 ### 3.1 运行jar包情况如下：
 
-![image-20210511195509106](resources/image-20210511195509106.png)
+![image-20210511195509106](image-20210511195509106.png)
 
 ### 3.2 打开igniteVisor程序，并查看cache具体内容
 
-![image-20210511195535688](resources/image-20210511195535688.png)
+![image-20210511195535688](image-20210511195535688.png)
 
 ### 3.3 向Kafka中插入数据
 
-![image-20210511195552025](resources/image-20210511195552025.png)
+![image-20210511195552025](image-20210511195552025.png)
 
 ## 4. QuickStart
 

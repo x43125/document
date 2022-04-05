@@ -8,7 +8,7 @@ Apache Spark是用于大规模分析的通用并行计算引擎。 它的核心�
 
 ### snappydata 架构
 
-![TIBCO ComputeDB Architecture](resources/tcdbArchitecture.png)
+![TIBCO ComputeDB Architecture](tcdbArchitecture.png)
 
 
 
