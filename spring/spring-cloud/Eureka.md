@@ -101,6 +101,10 @@ public InetAddress findFirstNonLoopbackAddress() {
 
 
 
+
+
+
+
 ## 调用
 1. HostInfoEnvironmentPostProcessor.postProcessEnvironment()
 2. SimpleDiscoveryClientAutoConfiguration.simpleDiscoveryProperties()
@@ -125,5 +129,4 @@ debug代码后发现代码在第一次调用 `InetUtils.findFirstNonLoopbackHost
 - simpleDiscoveryProperties
 - simpleDiscoveryClient
 - compositeDiscoveryClient
-
 
