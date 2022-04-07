@@ -1,6 +1,8 @@
 # Spring Running Process
 
-## 1. Shorthand
+## 1. spring项目启动过程
+
+> 大的维度：
 
 ### 1.1 xml方式
 
