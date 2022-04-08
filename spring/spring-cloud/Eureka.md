@@ -23,9 +23,10 @@ spring:
         - docker0
         - veth.*
       # 指定想要绑定的IP，数组形式，可以是网段
-      preferredNetworks:
+      preferred-networks:
         - 192.168
         - 10.0
+      
 ```
 
 但在设置了该部分配置后，重新运行项目发现并未有所改变，于是只好使用debug大法。
