@@ -16,7 +16,9 @@ vim /etc/inputrc
 
 vim /etc/bashrc
 
-在开始的地方加上一句 setterm -blength 0
+在开始的地方加上一句 
+
+setterm -blength 0
 
 :wq
 
