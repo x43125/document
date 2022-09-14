@@ -1,6 +1,6 @@
-## maven打包
+# maven打包
 
-### scala打包，标注主函数入口
+## scala打包，标注主函数入口
 
 ```xml
     <build>
@@ -79,7 +79,7 @@
 
 
 
-collect在用
+## Java 指定主入口函数
 
 ```xml
 <build>

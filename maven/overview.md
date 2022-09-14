@@ -123,6 +123,135 @@ verify -> **install** -> **deploy**
 
 拆分项目为多个模块，然后通过maven进行依赖
 
+父模块：项目和创建普通Java项目相同，区别是：将maven的打包方式改为 **pom**
+
+```xml
+<packaging>pom</packaging>
+```
+
+然后在子模块中添加父模块的坐标
+
+```xml
+<parent>
+    <!-- 父工程坐标 -->
+    <groupId>...</groupId>
+    <artifactId>Parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <!-- 指定从当前子工程的pom.xml文件出发，查找父工程的pom.xml的路径 -->
+    <relativePath>../Parent/pom.xml</relativePath>
+</parent>
+```
+
+> 如果子工程的 groupId、version 和父工程一样则可以删除。
+
+将父模块的依赖内容 使用 `dependencyManagement`来括起来
+
+如下：
+
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.9</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+然后就可以将子模块的相应的依赖，删除版本和范围
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+    </dependency>
+</dependencies>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
