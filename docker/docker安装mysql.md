@@ -15,8 +15,8 @@ docker run -p 3306:3306 --name mysql \
 -v /opt/mysql/logs:/var/log/mysql \
 -v /opt/mysql/data:/var/lib/mysql \
 -v /opt/mysql/mysql-files:/var/lib/mysql-files/ \
--e MYSQL_ROOT_PASSWORD=456123 \
--d mysql
+-e MYSQL_ROOT_PASSWORD=root \
+-d mysql:5.7
 
 # 当做了外部目录映射之后也要映射/var/lib/mysql-files/ 
 ```

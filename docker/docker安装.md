@@ -11,7 +11,7 @@ docker要求centos系统的内核高于3.10，查看内核版本
 使用root升级yum，
 
 ```bash
-$ sudo yum update
+$ sudo yum -y update
 ```
 
 安装依赖
@@ -48,5 +48,22 @@ $ sudo systemctl enable docker
 
 ```bash
 $ docker version
+```
+
+
+
+## 配置镜像加速
+
+配置阿里云镜像加速
+
+```sh
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+  "registry-mirrors": ["https://h72uhsdu.mirror.aliyuncs.com"]
+}
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 

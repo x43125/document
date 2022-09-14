@@ -20,15 +20,14 @@ appendonly yes  # redis持久化 默认是no
 准备环境
 
 ```sh
-mkdir /opt/redis
-mkdir /opt/redis/data
+mkdir -p /opt/redis/data
 cp redis.conf /opt/redis/data
 ```
 
 ### 启动
 
 ```sh
-docker run -p 9736:6379 \
+docker run -p 6379:6379 \
  --name redis \
  -v /opt/redis/redis.conf:/etc/redis/redis.conf  \
  -v /opt/redis/data:/data \
