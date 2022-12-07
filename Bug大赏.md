@@ -1,5 +1,13 @@
 # BUG鉴赏大会
 
+## docker
+
+> ERROR: network docker_default id 49044fc8722dfa95f075... **has active endpoints** 
+
+原因：先更新了docker-compose.yml文件，后进行的docker-compose down操作
+
+
+
 1. centos7直接使用指令会报错，
 
    ```bash
@@ -23,20 +31,48 @@
 
 
 
-2. idea： cannot resolve method
-
-检查import的库是否正确，多数为此错误
-
 
 
 ## shell
 
 使用`.`来执行脚本的时候，如果脚本出错会将会话直接关闭，使用`bash`或`sh`来执行则不会
 
+
+
 ## mybatis-plus
+
 分页的时候，如果是join需要在最外层包一层，否则只会用主表数来返回total
+
 ```mysql
 select * from (
     join语句
 ) as temp
 ```
+
+
+
+## maven
+
+### 在powershell中使用的时候报错
+
+在powershell中直接輸入命令：mvnd clean package -Dmaven.test.skip=true
+
+报错：`Unknown lifecycle phase ".test.skip=true"`
+
+**解决方法：** 在参数外面添加 英文单引号
+
+```powershell
+mvnd clean package '-Dmaven.test.skip=true'
+```
+
+
+
+## spring
+
+
+
+## idea
+
+### cannot resolve method
+
+**解决方法：**检查import的库是否正确，多数为此错误
