@@ -78,12 +78,9 @@ _italic_
 
 
 - [ ] markdown learning 
-
 - [x] mysql learning
-
 - [ ] \(operating system learning)
-
-- [ ] \(Optional) Open a followup issue
+- [ ] \(Optional) Open a followup issues
 
 :+1:
 
