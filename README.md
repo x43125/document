@@ -39,3 +39,5 @@ add .gitignore and remove .obsidian
 斯科拉觉得
 
 ![ceshi2](https://files.catbox.moe/bpgguc.png)
+
+## first commit from mac14
