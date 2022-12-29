@@ -1,6 +1,6 @@
 # BUG鉴赏大会
 
-## docker
+## 一、docker
 
 > ERROR: network docker_default id 49044fc8722dfa95f075... **has active endpoints** 
 
@@ -33,13 +33,13 @@
 
 
 
-## shell
+## 二、shell
 
 使用`.`来执行脚本的时候，如果脚本出错会将会话直接关闭，使用`bash`或`sh`来执行则不会
 
 
 
-## mybatis-plus
+## 三、mybatis-plus
 
 分页的时候，如果是join需要在最外层包一层，否则只会用主表数来返回total
 
@@ -51,7 +51,7 @@ select * from (
 
 
 
-## maven
+## 四、maven
 
 ### 在powershell中使用的时候报错
 
@@ -67,11 +67,11 @@ mvnd clean package '-Dmaven.test.skip=true'
 
 
 
-## spring
+## 五、spring
 
 
 
-## idea
+## 六、idea
 
 ### cannot resolve method
 
