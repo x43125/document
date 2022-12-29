@@ -16,6 +16,7 @@ curl -XGET http://localhost:9200/testindex/_mapping?pretty
 curl -H "Content-Type: application/json" -XPUT 'http://localhost:9200/testindex/_mapping?pretty' -d '{"properties":{"mchnt_id" : {"type" : "keyword","index" : false},"mchnt_name" : {"type" : "text"}}}'
 
 curl -H "Content-Type: application/json" -XPOST 'http://localhost:9200/testindex/_mapping?pretty' -d '{"properties": {"amount":{"type":"integer"}}}'
+
 ```
 
 
