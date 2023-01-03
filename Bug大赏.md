@@ -76,3 +76,10 @@ mvnd clean package '-Dmaven.test.skip=true'
 ### cannot resolve method
 
 **解决方法：**检查import的库是否正确，多数为此错误
+
+
+
+## 七、Java
+
+如果 `Javafx`引不进来，有可能是jdk是openjdk的问题。
+
