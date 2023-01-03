@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<map name="redis-tree" document_type="Blumind" editor_version="1.3.16.0">
+  <!--Create by Blumind, you can download it free from http://www.blumind.org/download-->
+  <info />
+  <layout>MIND_MAP</layout>
+  <attributes>
+    <item name="editor_show_sidebar">True</item>
+  </attributes>
+  <style>
+    <back_color>White</back_color>
+    <fore_color>Black</fore_color>
+    <line_color>LightSlateGray</line_color>
+    <border_color>SlateGray</border_color>
+    <node_back_color>LightGray</node_back_color>
+    <node_fore_color>Black</node_fore_color>
+    <select_color>RoyalBlue</select_color>
+    <hover_color>MediumSlateBlue</hover_color>
+    <link_line_color>Green</link_line_color>
+  </style>
+  <nodes>
+    <node text="Redis">
+      <style>
+        <back_color>Silver</back_color>
+        <fore_color>Black</fore_color>
+        <border_color>Black</border_color>
+        <padding>12</padding>
+      </style>
+      <nodes>
+        <node text="数据结构">
+          <nodes>
+            <node text="string">
+              <nodes>
+                <node text="内部编码">
+                  <nodes>
+                    <node text="int" />
+                    <node text="embstr" />
+                    <node text="raw" />
+                  </nodes>
+                </node>
+                <node text="使用场景">
+                  <nodes>
+                    <node text="缓存" />
+                    <node text="计数" />
+                    <node text="共享session" />
+                    <node text="限速" />
+                  </nodes>
+                </node>
+                <node text="存储数据类型">
+                  <nodes>
+                    <node text="二进制" />
+                    <node text="字符串" />
+                    <node text="整型" />
+                  </nodes>
+                </node>
+                <node text="命令" folded="True">
+                  <nodes>
+                    <node text="set" />
+                    <node text="get" />
+                    <node text="mset" />
+                    <node text="mget" />
+                    <node text="incr" />
+                    <node text="incrby" />
+                    <node text="decr" />
+                    <node text="decrby" />
+                    <node text="append" />
+                    <node text="strlen" />
+                    <node text="getset" />
+                    <node text="setrange" />
+                    <node text="getrange" />
+                  </nodes>
+                </node>
+              </nodes>
+            </node>
+            <node text="list" />
+            <node text="set" />
+            <node text="zset" />
+            <node text="hash" />
+          </nodes>
+        </node>
+        <node text="命令" />
+        <node text="特点">
+          <nodes>
+            <node text="快">
+              <nodes>
+                <node text="纯内存" />
+                <node text="I/O多路复用技术" />
+                <node text="单线程" />
+              </nodes>
+            </node>
+            <node text="考点">
+              <nodes>
+                <node text="为什么redis这么快" />
+                <node text="为什么单线程的redis这么快" />
+              </nodes>
+            </node>
+          </nodes>
+        </node>
+      </nodes>
+    </node>
+  </nodes>
+</map>
