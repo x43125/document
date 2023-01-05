@@ -69,7 +69,11 @@ mvnd clean package '-Dmaven.test.skip=true'
 
 ## 五、spring
 
+### 5.1 循环依赖
 
+Has bean injected other bean ；；；； circular reference
+
+找到循环依赖的两个类，并找到相应的注入位置，然后将一个注入加上 `@Lazy` 注解
 
 ## 六、idea
 
