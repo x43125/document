@@ -38,3 +38,10 @@ PreferredAuthentications publickey
 IdentityFile ~/.ssh/id_rsa_43125
 ```
 
+将账号加到库里：(每次重启可能都得重新来一次)
+
+```sh
+ssh-add ~/.ssh/id_rsa_qt
+ssh-add ~/.ssh/id_rsa_43125
+```
+
