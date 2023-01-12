@@ -20,5 +20,27 @@
 | zsh-syntax-highlighting | 提醒输入的命令是否正确，红色错误🙅‍♂️，绿色正确🙆‍♂️ | git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting |
 |                         |                                                |                                                              |
 
+## 配置
+
+### 开启ctrl alt健
+
+开启ctrl键
+
+在`.zshrc`文件中追加这几行，然后保存后source下即可
+
+```sh
+bindkey -e
+bindkey '\e\e[C' forward-word
+bindkey '\e\e[D' backward-word 
+```
+
+开启alt键
+
+```sh
+bindkey -e
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+```
+
 
 
