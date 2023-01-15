@@ -1,4 +1,4 @@
-## 修改Linux命令行颜色
+## 1、修改Linux命令行颜色
 
 vim .bashrc
 
@@ -13,3 +13,10 @@ PS1="\[\e[37;40m\][\[\e[32;40m\]\u\[\e[37;40m\]@\h \[\e[36;40m\]\w\[\e[0m\]]\\$ 
 ```bash
 source .bashrc
 ```
+
+## 2、添加alias
+
+```sh
+alias dps='docker ps --format "table  {{.ID}}\t{{.Status}}\t{{.Names}}\t{{.Image}}"'
+```
+
