@@ -18,4 +18,8 @@ DB_ROW_ID: 隐含的自增ID（隐藏主键）
 >
 > 在InnoDB中有一个全局变量 `dictsys.row_id` 所有DB_ROW_ID共享这个变量，每插入一条需要DB_ROW_ID的记录的时候，DB_ROW_ID会拿这个全局变量当作自己的主键，然后再自增这个全局变量
 
-DN_TRX_ID: 
+DN_TRX_ID: 最近修改/插入事务的ID
+
+DB_ROLL_PTR: 回滚指针，指向这条记录的上一个版本
+
+DELETED_BIT: 记录被更新或删除，不代表真的删除，只是删除flag变了
