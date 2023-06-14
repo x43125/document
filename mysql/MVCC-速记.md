@@ -8,7 +8,9 @@
 
 主要依靠：**4个隐式字段**，**undo日志** ，**Read View** 来实现
 
-4个隐式字段：DB_ROW_ID, DN_TRX_ID, DB_ROLL_PTR, DELETED_BIT
+## 4个隐式字段
+
+> DB_ROW_ID, DN_TRX_ID, DB_ROLL_PTR, DELETED_BIT
 
 DB_ROW_ID: 隐含的自增ID（隐藏主键）
 
@@ -23,3 +25,40 @@ DN_TRX_ID: 最近修改/插入事务的ID
 DB_ROLL_PTR: 回滚指针，指向这条记录的上一个版本
 
 DELETED_BIT: 记录被更新或删除，不代表真的删除，只是删除flag变了
+
+## undo log
+
+为了能够回滚而记录的这些数据称之为 `undo log`
+
+> 在查询的时候不会产生修改操作，所以无需记录 undo log
+
+undo log 主要分为三种：
+
+> insert undo log，update undo log，delete undo log
+
+insert undo log：至少要记录这条记录的主键，以便回滚
+
+update undo log：至少要记录这条记录修改前的全部旧值，以便回滚后修改为旧值
+
+delete undo log：至少要记录这条记录删除前的全部旧值，以便回滚后将原值再重新插入表中
+
+> 删除操作一般只是记录下老记录的删除标记`DELETED_BIT`并非真正删除
+>
+> 需要再研究：具体机制
+>
+> 为了节省磁盘空间，InnoDB有专门的purge线程来清理DELETED_BIT为true的记录。为了不影响MVCC的正常工作，purge线程自己也维护了一个read view（这个read view相当于系统中最老活跃事务的read view）;如果某个记录的DELETED_BIT为true，并且DB_TRX_ID相对于purge线程的read view可见，那么这条记录一定是可以被安全清除的。
+>
+> ------
+>
+> 著作权归@pdai所有 原文链接：https://pdai.tech/md/db/sql-mysql/sql-mysql-mvcc.html
+
+所以，主要就是update undo log
+
+我们先来看一个update的例子：
+
+### 示例：
+
+
+
+## Read View
+
