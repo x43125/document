@@ -37,7 +37,7 @@ update user set host='%' where user='root';
 # 赋权
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
 # 写入
-flush privileges
+flush privileges;
 
 # 退出重启mysql容器
 docker restart mysql

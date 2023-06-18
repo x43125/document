@@ -28,9 +28,9 @@ DELETED_BIT: 记录被更新或删除，不代表真的删除，只是删除flag
 
 ## undo log
 
-为了能够回滚而记录的这些数据称之为 `undo log`
+为了回滚以及配合MVCC而记录的这些数据称之为 `undo log`
 
-> 在查询的时候不会产生修改操作，所以无需记录 undo log
+> 只记录已经commit的事物记录，未提交的不记录；在查询的时候不会产生修改操作，所以无需记录 undo log
 
 undo log 主要分为三种：
 
@@ -61,4 +61,34 @@ delete undo log：至少要记录这条记录删除前的全部旧值，以便�
 
 
 ## Read View
+
+当执行一个快照读的时候，对该行记录生成当时的读视图，一般有三个属性构成
+
+> trx_list; up_limit_id; low_limit_id
+
+### 属性
+
+trx_list: 在ReadView生成的时候，系统正在活跃的（未提交的）事务ID
+
+up_limit_id: 在trx_list中最小的id
+
+low_limit_id: 在ReadView生成的时候，尚未分配的事务ID（即当前出现过的最大的事务ID+1） 
+
+### 判断条件
+
+判断一个ReadView能够查看该数据的哪个版本可以根据下列条件依此进行比对
+
+1. 如果 `DB_TRX_ID < up_limit_id` 则ReadView**可以**看到该DB_TRX_ID所在的记录，否则进入下一个校验；
+2. 如果 `DB_TRX_ID >= low_limit_id` 则ReadView**无法**看到该DB_TRX_ID所在的记录，否则进入下一个校验；
+3. 如果 `DB_TRX_ID在trx_list中` 则ReadView**无法**看到该DB_TRX_ID所在的记录，**否则说明可以看到** ，校验结束。
+
+## RR & RC
+
+> RR 可重复度；RC 读已提交
+
+在RR和RC下，生成ReadView的时机或者说机制不同
+
+在RR下：在一个事务开启后的第一个快照读的时候会生成当时的ReadView，以后都只会复用这个ReadView。因此，在第一个快照读前提交的更新操作，此事务都可以看到，而在此快照生成之后提交的更新，本事务则无法看到了。
+
+在RC下：在开启事务后，每一个快照读都会生成新的ReadView。因此，所有的其他事务的提交本事务都可以看到。
 
