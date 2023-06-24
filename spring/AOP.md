@@ -128,3 +128,87 @@ AopDemoServiceImpl.doMethod3
 最终通知
 ```
 
+
+
+### 切入点：execution规则
+
+我们常用execution来声明切入点
+
+```java
+execution (modifiers-pattern? ret-type-pattern declaring-type-pattern? name-pattern(param-pattern) throws-pattern?)
+```
+
+其中：
+
+- ret-type-pattern(返回类型模式), name-pattern(名字模式), param-pattern(参数模式) **必填，其他选填**。
+
+- modifiers-pattern(修饰符模式):  private, protected, public等
+- ret-type-pattern(返回类型模式): 一般都用 ‘*’
+- declaring-type-pattern(全限定类型模式): 一个全限定的类型名将只会匹配返回给定类型的方法
+- name-pattern(名字模式): 匹配方法名，可以使用 ‘*’ 来表示所有者或部分(可以用：set\* 来表示所有以set开头的方法)
+- param -pattern(参数模式)：
+  - `()` 匹配一个不接受任何参数的方法 
+  - `(..)`匹配一个接受任意数量参数的方法（可以为0）
+  - `(*)`匹配一个接受一个任何类型的参数的方法
+  - `(*, String)`匹配一个接受两个参数的方法，第一个参数可以是任意类型，第二个参数必须是`String`
+  - 以此类推，等等
+
+更多匹配规则如下：
+
+```java
+// 任意公共方法的执行：
+execution（public * *（..））
+
+// 任何一个名字以“set”开始的方法的执行：
+execution（* set*（..））
+
+// AccountService接口定义的任意方法的执行：
+execution（* com.xyz.service.AccountService.*（..））
+
+// 在service包中定义的任意方法的执行：
+execution（* com.xyz.service.*.*（..））
+
+// 在service包或其子包中定义的任意方法的执行：
+execution（* com.xyz.service..*.*（..））
+
+// 在service包中的任意连接点（在Spring AOP中只是方法执行）：
+within（com.xyz.service.*）
+
+// 在service包或其子包中的任意连接点（在Spring AOP中只是方法执行）：
+within（com.xyz.service..*）
+
+// 实现了AccountService接口的代理对象的任意连接点 （在Spring AOP中只是方法执行）：
+this（com.xyz.service.AccountService）// 'this'在绑定表单中更加常用
+
+// 实现AccountService接口的目标对象的任意连接点 （在Spring AOP中只是方法执行）：
+target（com.xyz.service.AccountService） // 'target'在绑定表单中更加常用
+
+// 任何一个只接受一个参数，并且运行时所传入的参数是Serializable 接口的连接点（在Spring AOP中只是方法执行）
+args（java.io.Serializable） // 'args'在绑定表单中更加常用; 请注意在例子中给出的切入点不同于 execution(* *(java.io.Serializable))： args版本只有在动态运行时候传入参数是Serializable时才匹配，而execution版本在方法签名中声明只有一个 Serializable类型的参数时候匹配。
+
+// 目标对象中有一个 @Transactional 注解的任意连接点 （在Spring AOP中只是方法执行）
+@target（org.springframework.transaction.annotation.Transactional）// '@target'在绑定表单中更加常用
+
+// 任何一个目标对象声明的类型有一个 @Transactional 注解的连接点 （在Spring AOP中只是方法执行）：
+@within（org.springframework.transaction.annotation.Transactional） // '@within'在绑定表单中更加常用
+
+// 任何一个执行的方法有一个 @Transactional 注解的连接点 （在Spring AOP中只是方法执行）
+@annotation（org.springframework.transaction.annotation.Transactional） // '@annotation'在绑定表单中更加常用
+
+// 任何一个只接受一个参数，并且运行时所传入的参数类型具有@Classified 注解的连接点（在Spring AOP中只是方法执行）
+@args（com.xyz.security.Classified） // '@args'在绑定表单中更加常用
+
+// 任何一个在名为'tradeService'的Spring bean之上的连接点 （在Spring AOP中只是方法执行）
+bean（tradeService）
+
+// 任何一个在名字匹配通配符表达式'*Service'的Spring bean之上的连接点 （在Spring AOP中只是方法执行）
+bean（*Service）
+```
+
+另外spring还支持以下三个逻辑运算符来组合切入点表达式：
+
+```java
+&&：要求连接点同时匹配两个切入点表达式
+||：要求连接点匹配任意个切入点表达式
+!:：要求连接点不匹配指定的切入点表达式
+```
