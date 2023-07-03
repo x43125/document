@@ -275,7 +275,7 @@ protected final void refreshBeanFactory() throws BeansException {
 
 
 
-读取xml -> Resource -> 解析成Document对象 -> 再将Document对象解析成Bean对象 -> 注册到容器中
+读取xml -> Resource -> 解析成Document对象 -> 再将Document对象解析成BeanDefinition对象 -> 注册到容器中
 
 ```java
 // 先解析成Doc
@@ -285,6 +285,16 @@ BeanDefinitionHolder bdHolder = BeanDefinitionParserDelegate.parseBeanDefinition
 // 最后将beanDefinitionHolder注册进容器中
 BeanDefinitionReaderUtils.registerBeanDefinition(bdHolder, getReaderContext().getRegistry());
 ```
+
+
+
+
+
+
+
+
+
+
 
 
 
