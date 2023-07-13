@@ -118,24 +118,118 @@ public class VolatileStudy {
 
 ## 4 解决
 
-volatile （易挥发的，波动的）
+**volatile** （易挥发的，波动的）
 
-为了解决以上提到的 **重排序**问题和**可见性**问题Java提供了volatile修饰符
+为了解决以上提到的 **有序性**问题和**可见性**问题Java提供了volatile修饰符
 
 volatile修饰符只能用来修饰变量，并达到如下两个功能：
 
 1. volatile修饰的变量在执行相关操作的时候，不进行重排序
-2. volatile修饰的变量在发生变化之后会立刻写回主内存中，并将其他线程中的缓存值设为失效，即让其他线程去主存中重新读取最新的值
+2. volatile修饰的变量在发生变化之后会**立刻写回主内存中，并将其他线程中的缓存值设为失效**，即让其他线程去主存中重新读取最新的值
 
 ### 4.1 解决重排序问题
 
 volatile通过内存屏障（Memory Barriers）来避免重排序问题
 
+我们先来看一段代码
+
+```java
+class HelloWorld {
+
+  static volatile int i = 1;
+
+  public static void main(String[] args) {
+    i++;
+    System.out.println(i);
+  }
+}
+```
+
+在这段代码中我们对一个使用volatile修饰的整型进行了加加操作，并输出他
+
+这是这段代码的汇编代码
+
+```shell
+PS F:\workspace\java\text> javac .\HelloWorld.java
+PS F:\workspace\java\text> javap -l -c HelloWorld
+Compiled from "HelloWorld.java"
+class HelloWorld {
+  static volatile int i;
+
+  HelloWorld();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+    LineNumberTable:
+      line 3: 0
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: getstatic     #2                  // Field i:I
+       3: iconst_1
+       4: iadd
+       5: putstatic     #2                  // Field i:I
+       8: getstatic     #3                  // Field java/lang/System.out:Ljava/io/PrintStream;
+      11: getstatic     #2                  // Field i:I
+      14: invokevirtual #4                  // Method java/io/PrintStream.println:(I)V
+      17: return
+    LineNumberTable:
+      line 8: 0
+      line 9: 8
+      line 10: 17
+
+  static {};
+    Code:
+       0: iconst_1
+       1: putstatic     #2                  // Field i:I
+       4: return
+    LineNumberTable:
+      line 5: 0
+}
+```
+
+
+
+### 内存屏障（Memory Barrier）
+
+内存屏障分为
+
+读屏障 (Load)：强迫线程到主存中读取变量最新的值
+
+写屏障(Store)：强迫线程将变量值写回到主存中去
+
+
+
+这两个屏障可以进行组合以起到更丰富的功能
+
+| 屏障类型   | 屏障功能 |
+| ---------- | -------- |
+| LoadLoad   |          |
+| LoadStore  |          |
+| StoreLoad  |          |
+| StoreStore |          |
+|            |          |
+
+
+
+volatile：底层实现就是内存屏障
+
+对volatile变量的写指令之后会加入写屏障
+
+- 可以保证在写屏障之前的对共享变量的改动都会同步到主存中去；
+- 可以保证在写屏障之前的指令不会重排序到写屏障之后。
+
+对volatile变量的读指令之前会加入读屏障
+
+- 可以保证在读屏障之后的代码对共享变量的读取都从主存中去取；
+- 可以保证在读屏障之后的代码不会重排序到读屏障之前。
+
 
 
 ## 5 但这样并不能解决原子性问题
 
-
+volatile需要其他的方法来配合实现原子性，这个可以直接使用各种锁，也可以使用一个方式：cas
 
 
 
