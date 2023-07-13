@@ -4,9 +4,7 @@
 >
 > AQS = state变量 + CLH变种的双端队列
 
-
-
-## 1 source code
+## 一、source code
 
 ```Java
 // The synchronization state.
@@ -70,7 +68,7 @@ static final class Node {
 }
 ```
 
-## 2 ReenTrantLock
+## 二、ReenTrantLock
 
 ![image-20220504224326747](resources/image-20220504224326747.png)
 
@@ -84,7 +82,7 @@ if (!hasQueuedPredecessors() &&
 
 非公平锁在线程获取到锁资源的时候不管有没有等待队列，会立刻去执行
 
-## 3 source-code-analysis
+## 三、source-code-analysis
 
 枷锁过程：
 
@@ -92,7 +90,9 @@ if (!hasQueuedPredecessors() &&
 - 加锁失败，进入等待队列
 - 线程入队列后，进入阻塞状态
 
+## 四、AQS实现类
 
+![image-20230705103835615](/Users/wangxiang/Library/Application Support/typora-user-images/image-20230705103835615.png)
 
 
 
