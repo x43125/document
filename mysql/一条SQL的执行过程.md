@@ -37,4 +37,3 @@ redo log主要用来崩溃恢复
   - 将 bin log 文件名字和更新内容在 bin log 中的位置记录到redo log中，同时在 redo log 最后添加 commit 标记
 
 <hr>
-
