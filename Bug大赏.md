@@ -67,6 +67,10 @@ mvnd clean package '-Dmaven.test.skip=true'
 
 
 
+
+
+父项目里使用dependencyManagement管理子模块版本，且用properties规定了版本号，那子模块中涉及到的一些依赖的版本需要使用版本号变量
+
 ## 五、spring
 
 ### 5.1 循环依赖

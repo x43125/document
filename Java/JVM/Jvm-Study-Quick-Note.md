@@ -65,27 +65,75 @@ HotSpot 虚拟机将 虚拟机栈和本地方法栈 **合二为一** 了
 
 
 
+#### CPU占用过高的排查方式：
+
+1. 使用top命令，然后 shift+h 来按照CPU使用率排序，可以得到占用最高的进程信息
+2. 从进程信息可以获得进程id, PID
+3. 然后使用ps命令获取该进程下的所有线程及线程的CPU占用：`ps H -eo pid,tid,%cpu | grep PID` （不能有多余空格）
+4. 从列表中找出CPU占用比较高的线程，然后使用jstack命令查看具体的线程执行信息：jstack pid
+5. jstack会打印该进程下的所有线程的执行信息，但其线程会以16进制形式展示，所以需要把第4部得到的线程ID做个转换，在信息中检索，就能找到该线程的具体信息，从而可以知道当前该线程运行的代码位置。
+
+
+
+#### 迟迟得不到结果，死锁
+
+- 使用jstack pid的方式打印进程运行信息
+- 来到进程末尾查看是否有死锁相关信息，如果有会打印出来，deadlock字样，并且会给出哪些线程导致死锁，并且会给出每个线程持有的锁和想要获得的锁，及相关代码行数，根据代码信息，我们就可以去代码中做具体排查了
+
+
+
+#### 多次垃圾回收之后，内存占用依然很高
+
+- 首先可以使用jmap在一些特殊时刻打印进程信息，根据打印的内容进行分析，内容一般为各区的内存占用（eden, old, full等）
+- 其次可以使用jconsole查看堆内存变化的情况，支持GC
+- 最后还可以使用jvisualvm 将当前堆信息做一个堆快照，dump下来，然后对结果进行分析，比如可以使用右侧的查找功能，比如查找前20个堆内存占用最大的对象。支持GC
 
 
 
 
 
+方法区的描述
+
+![image-20230728220748283](/Users/wangxiang/Library/Application Support/typora-user-images/image-20230728220748283.png)
 
 
 
 
 
+jvm参数
+
+- -Xss 设置每个线程的栈大小: -Xss128k
+- -Xmx 设置堆的最大内存
+- -Xms 设置堆的起始大小
+- -Xmn 设置堆新生代大小
+- -XX:MaxMetaspaceSize 设置元空间大小：-XX:MaxMetaspaceSize=8m
+- -XX:MaxPermSize 设置永久代大小：-XX:MaxPermSize=8m
+- -XX:+PrintStringTableStatistics 打印串池信息
+- -XX:+PrintGCDetails -verbose:gc 打印垃圾回收的详细信息
+- -XX:StringTableSize=桶个数 字符串池是一个hashmap结构，此参数，确定hashmap的桶个数也就是数组个数
+- -XX:+DisableExplicitGC 禁用显示的垃圾回收 （System.gc()）
 
 
 
 
 
+类二进制字节码：类基本信息+常量池+类方法定义+虚拟机指令
+
+javap -v HelloWorld.class // 反编译字节码文件为人可查看的文件内容
+
+常量池：就是一张常量表存储在字节码文件中：虚拟机指令根据这张表找到要执行的类名，方法名，参数类型，字面量等信息
+
+当类被加载进虚拟机后，这个常量池信息就会被放入运行时常量池中，并且把里面的符号地址转成实际地址。
 
 
 
+如果代码中有大量重复字符串的使用的话，可以考虑将这些字符串入池，会极大的节约字符串对堆内存的占用。（享元模式）
+
+也就是调用下string.intern()方法
 
 
 
+直接内存：Direct Memory 主要用在NIO，用于数据缓冲区，读写效率很高，不受JVM垃圾回收直接回收；但可以通过Unsafe类调用 freeMemory方法来释放，具体实现的时候是在JVM垃圾回收的时候，调用回调方法，回调方法里调用了Unsafe.freeMemory()方法实现。
 
 
 
