@@ -10,7 +10,7 @@ docker pull mysql
 ### 启动MySQL
 
 ```sh
-docker run -p 3306:3306 --name mysql \
+docker run -p 13306:3306 --name mysql \
 -v /opt/mysql/conf:/etc/mysql \
 -v /opt/mysql/logs:/var/log/mysql \
 -v /opt/mysql/data:/var/lib/mysql \
