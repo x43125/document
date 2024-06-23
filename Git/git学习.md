@@ -1,7 +1,5 @@
 # git学习
-	git是全球最先进的分布式版本控制系统
-
-
+> git是全球最先进的分布式版本控制系统
 
 ## 安装git：
 
@@ -11,19 +9,17 @@
 		$ git config --global user.email "email@example.com"  
 	创建版本库repository（可以简单理解为一个目录）
 
-
-
 ## 初始化
 
-​		在想要初始化为git仓库的文件夹下面启动git bash，然后使用如下命令，将该文件夹初始化为git repository
+在想要初始化为git仓库的文件夹下面启动git bash，然后使用如下命令，将该文件夹初始化为git repository
 
 ```
 $ git init
 ```
 
+## 使用
 
-
-## 使用，添加文件  
+添加文件  
 
 	放在GitRepository目录下
 	两步：
@@ -32,13 +28,11 @@ $ git add file1.txt
 $ git commit -m "add 3 files."
 ```
 
-
-
 ## 删除文件
 
-​		git rm <file>
-
-
+```sh
+git rm <file>
+```
 
 ## 查看状态，具体修改内容
 
@@ -47,8 +41,6 @@ $ git status
 $ git diff HEAD -- readme.txt
 ```
 
-
-
 ## 查看修改历史，日志（第二行为，将日志按行显示，直观）：
 
 ```
@@ -56,30 +48,26 @@ $ git log
 $ git log --pretty=oneline
 ```
 
-
-
 ## 回退版本
 
-​		HEAD表示当前版本，最新版本，在后面加一个^则表示前一个，加^^则表示前两个，多版本的加 ~num (例如下面演示的为回退10个版本)
+HEAD表示当前版本，最新版本，在后面加一个^则表示前一个，加^^则表示前两个，多版本的加 ~num (例如下面演示的为回退10个版本)
 
 ```
 $ git reset --hard HEAD^
 $ git reset --hard HEAD~10
 ```
 
-​		想要再回到刚刚推出的版本则只需记下当时版本的版本号，然后回退(592a即为版本号前4位，git会自动寻找)
+想要再回到刚刚推出的版本则只需记下当时版本的版本号，然后回退(592a即为版本号前4位，git会自动寻找)
 
 ```
 $ git reset --hard 592a
 ```
 
-​		若未记录下当时版本commit id，可以使用指令记录功能(该功能会返回使用过的每次命令)：
+若未记录下当时版本commit id，可以使用指令记录功能(该功能会返回使用过的每次命令)：
 
 ```
 $ git reflog
 ```
-
-
 
 ## stage -- 暂存区      ||     master 
 
