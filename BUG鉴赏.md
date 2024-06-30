@@ -1,4 +1,4 @@
-# BUG鉴赏大会
+# BUG鉴赏
 
 ## 一、docker
 
@@ -28,8 +28,6 @@
        2. 报错no module named site
 
 ***未解决***
-
-
 
 
 
@@ -78,6 +76,10 @@ mvnd clean package '-Dmaven.test.skip=true'
 Has bean injected other bean ；；；； circular reference
 
 找到循环依赖的两个类，并找到相应的注入位置，然后将一个注入加上 `@Lazy` 注解
+
+### 5.2 Jackson无法序列化 LocalDateTime
+
+https://www.cnblogs.com/johnnyzen/p/17447639.html
 
 ## 六、idea
 
