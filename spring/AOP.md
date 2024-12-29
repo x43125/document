@@ -203,6 +203,7 @@ bean（tradeService）
 
 // 任何一个在名字匹配通配符表达式'*Service'的Spring bean之上的连接点 （在Spring AOP中只是方法执行）
 bean（*Service）
+  
 ```
 
 另外spring还支持以下三个逻辑运算符来组合切入点表达式：
