@@ -31,11 +31,11 @@
 
 ### 4.1 算法
 
-![image-20250224224558251](/Users/wangxiang/Library/Application Support/typora-user-images/image-20250224224558251.png)
+![image-20250224224558251](./assets/image-20250224224558251.png)
 
 ### 4.2 八股
 
-![image-20250224230651852](/Users/wangxiang/Library/Application Support/typora-user-images/image-20250224230651852.png)
+![image-20250224230651852](./assets/image-20250224230651852.png)
 
 #### 4.2.1 算法详细计划
 

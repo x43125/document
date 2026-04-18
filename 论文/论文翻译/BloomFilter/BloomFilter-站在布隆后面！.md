@@ -198,7 +198,7 @@ $$
 
 这是一个可视化布隆过滤器各参数效果的网站：https://hur.st/bloomfilter/
 
-![image-20240731012707923](/Users/wangxiang/Library/Application Support/typora-user-images/image-20240731012707923.png)
+![image-20240731012707923](./assets/image-20240731012707923.png)
 
 ## 五、优缺点
 

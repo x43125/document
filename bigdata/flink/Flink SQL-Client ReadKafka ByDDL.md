@@ -20,7 +20,7 @@ wget https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-k
 
 将进入flink sql-client的终端界面
 
-<img src="resources/image-20210426113653618.png" alt="image-20210426113653618" style="zoom:60%;" />
+<img src="./assets/image-20210426113653618.png" alt="image-20210426113653618" style="zoom:60%;" />
 
 之后的操作即在此终端中执行
 
